@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Bspline Curve Generator</title>
+
+
+    <!-- Insert this line above script imports  -->
+    <script>
+        if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+        }
+    </script>
+
+    <link rel="stylesheet" href="./ui.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css">
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/popper.js/dist/umd/popper.js"></script>
+    <script src="./node_modules/tooltip.js/dist/umd/tooltip.js"></script>
+    <!-- <script src="https://cdn.bootcss.com/bootstrap/3.2.0/js/popover.min.js"></script> -->
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./node_modules/bootstrap-switch/dist/js/bootstrap-switch.min.js"></script>
+
+    <!-- Insert this line after script imports -->
+    <script>
+        if (window.module) module = window.module;
+    </script>
+    <!-- <script src="./canvas.js"></script> -->
+    <script>
+        // You can also require other files to run in this process
+        require('./renderer.js');
+    </script>
+</head>
+
+<body>
+    <div class="jumbotron">
+        <h1 class="display-3">B样条曲线生成器</h1>
+        <hr class="my-2">
+
+        <p></p>
+        <p class="lead">
+            <button class="btn btn-info btn-lg">绘制</button>
+            <button class="btn btn-warning btn-lg" id="clear">清空</button>
+            <button class="btn btn-success btn-lg" id="refresh">刷新</button>
+        </p>
+    </div>
+    <!-- <img src="./b-spline-curve-evaluation.png"> -->
+
+
+
+
+    <div class="row row-margin">
+        <div class="col-3 controlPane">
+            <div class="card bg-info text-center text-white">
+                <div class="card-body">
+                    控制面板
+                </div>
+            </div>
+
+
+            <div class="row  row-margin-top">
+
+            </div>
+            <div class="row">
+                <div class="switch" labelText="light theme">
+                    <input type="checkbox" name="my-checkbox" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="switch" labelText="grid">
+                    <input type="checkbox" name="my-checkbox" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="switch" labelText="control points">
+                    <input type="checkbox" name="my-checkbox" checked />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="switch" labelText="points line">
+                    <input type="checkbox" name="my-checkbox" checked />
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-2">
+                    <div class="switch" labelText="uniform">
+                        <input type="checkbox" name="my-checkbox" checked />
+                    </div>
+                    <div class="col-1">
+                        <select class="selectpicker">
+                            <optgroup label="Picnic">
+                                <option>Mustard</option>
+                                <option>Ketchup</option>
+                                <option>Relish</option>
+                            </optgroup>
+                            <optgroup label="Camping">
+                                <option>Tent</option>
+                                <option>Flashlight</option>
+                                <option>Toilet Paper</option>
+                            </optgroup>
+                        </select>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <!--<div class="switch" labelText="quasi&nbsp;uniform">-->
+                <div class="switch" labelText="quasi uniform">
+                    <input type="checkbox" name="my-checkbox" checked />
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="switch" labelText="piecewise">
+                    <input type="checkbox" name="my-checkbox" checked />
+                </div>
+
+            </div>
+
+
+
+
+
+
+        </div>
+
+        <div class="col-9">
+            <canvas id="tipCanvas" width=50 height=25></canvas>
+            <canvas id="myCanvas" style="border:1px solid #F1ECE9"> </canvas>
+        </div>
+
+    </div>
+
+
+
+
+    <canvas id="pointsCanvas" hidden></canvas>
+    <canvas id="lineCanvas" hidden></canvas>
+    <canvas id="gridCanvas" hidden></canvas>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <svg xmlns=" http://www.w3.org/2000/svg " version="1.1 " height="190 ">
+        <polygon points="100,10 40,180 190,60 10,60 160,180 " style="fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd; " />
+    </svg> -->
+
+</body>
+
+</html>

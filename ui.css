@@ -1,0 +1,39 @@
+/* html,
+body {
+    -webkit-app-region: drag;
+}
+
+#refresh {
+    -webkit-app-region: no-drag;
+} */
+
+body {
+    margin: 0;
+}
+
+canvas {
+    margin: 20px;
+}
+
+.switch {
+    padding-bottom: 8px;
+    margin-left: 5px !important;
+}
+
+.row-margin-top {
+    margin-top: 20px;
+}
+
+.row-margin {
+    margin-left: 20px !important;
+}
+
+.controlPane {
+    margin-left: 0px !important;
+    margin-top: 150px;
+    padding-left: 0px !important;
+}
+
+.row {
+    margin-left: 10px !important;
+}

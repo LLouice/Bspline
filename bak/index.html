@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>my first electron app</title>
+
+    <!-- Insert this line above script imports  -->
+    <script>
+        if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+        }
+    </script>
+
+    <link rel="stylesheet" href="./index.css">
+    <link href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://cdn.bootcss.com/bootstrap/3.2.0/js/popover.min.js"></script> -->
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+    <!-- Insert this line after script imports -->
+    <script>
+        if (window.module) module = window.module;
+    </script>
+
+    <script>
+        // You can also require other files to run in this process
+        require('./renderer.js');
+        // query is null, because the document is not load 
+        // document.querySelector("h1").innerText = "Continue it";
+        const electron = require('electron');
+        const {
+            ipcRenderer
+        } = electron;
+        const remote = require('electron').remote;
+        const win = require('electron');
+        $(document).ready(function () {
+            // document.querySelector("h1").innerText = "Continue it";
+            jQuery('.add').html("<h2>I'm new add sync?</h2");
+            $("#refresh").click(function () {
+                // el = process.version
+                window.location = "#";
+                console.log(process);
+                console.log("click refresh");
+                cw = remote.getCurrentWindow();
+                app = remote.app;
+                // console.log(cw);
+                // console.log(app);
+                console.log(ipcRenderer);
+                // app.relaunch();
+                ipcRenderer.send('refresh');
+
+            })
+
+        });
+        console.log(remote);
+        console.log(remote.app.getVersion());
+    </script>
+</head>
+
+<body>
+    <h1>B Spline generator</h1>
+
+    <div class="add"></div>
+    <div class="card text-left|center|right">
+        <img class="card-img-top" src="holder.js/100px180/" alt="">
+        <div class="card-body">
+            <h4 class="card-title">Title</h4>
+            <p class="card-text">Body</p>
+        </div>
+    </div>
+    <div class="form-check form-check-inline">
+        <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" name="" id="" value=""> 均匀B样条
+            <input class="form-check-input" type="checkbox" name="" id="" value="">准B样条
+            <input class="form-check-input" type="checkbox" name="" id="" value=""> 分段B样条
+        </label>
+    </div>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" id="navId">
+        <li class="nav-item">
+            <a href="#tab1Id" class="nav-link active">Active</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#tab2Id">Action</a>
+                <a class="dropdown-item" href="#tab3Id">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#tab4Id">Action</a>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a href="#tab5Id" class="nav-link">Another link</a>
+        </li>
+        <li class="nav-item">
+            <a href="#" class="nav-link disabled">Disabled</a>
+        </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane fade in active" id="tab1Id" role="tabpanel"></div>
+        <div class="tab-pane fade" id="tab2Id" role="tabpanel"></div>
+        <div class="tab-pane fade" id="tab3Id" role="tabpanel"></div>
+        <div class="tab-pane fade" id="tab4Id" role="tabpanel"></div>
+        <div class="tab-pane fade" id="tab5Id" role="tabpanel"></div>
+    </div>
+
+    <script>
+        $('#navId a').click(e => {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+    </script>
+
+
+
+    <div class="jumbotron">
+        <h1 class="display-3">巨幕</h1>
+        <p class="lead">Jumbo helper text</p>
+        <hr class="my-2">
+        <p>More info</p>
+        <p class="lead">
+            <a class="btn btn-info btn-lg" href="#" role="button">Jumbo action name</a>
+        </p>
+    </div>
+    <br>
+
+    <ul class="nav justify-content-center|justify-content-end">
+        <li class="nav-item">
+            <a class="nav-link active" href="#">Active link</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled link</a>
+        </li>
+    </ul>
+
+    <div class="row">
+        <div class="col-xs|sm|md|lg|xl-1-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Title</h3>
+                    <p class="card-text">Text</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs|sm|md|lg|xl-1-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Title</h3>
+                    <p class="card-text">Text</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <button class="btn bth-info" id="refresh">刷新</button>
+
+
+</body>
+
+</html>
