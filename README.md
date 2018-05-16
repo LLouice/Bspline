@@ -29,7 +29,7 @@ require('child_process').execFile(script, [port])
 dev
 ```bash
 __dirname: I:\Projects\Electron\Bspline
-__filename I:\Projects\Electron\Bspline\main.js
+__filename: I:\Projects\Electron\Bspline\main.js
      
 ```
 packaged 

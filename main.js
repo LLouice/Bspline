@@ -98,7 +98,13 @@ const createPyProc = () => {
 }
 
 const exitPyProc = () => {
-    pyProc.kill()
+    console.log("exitPyProc");
+    try {
+        pyProc.kill()
+
+    } catch (error) {
+        console.log("error occur in PyProc.kill()", error);
+    }
     pyProc = null
     pyPort = null
 }
@@ -167,8 +173,9 @@ ipcMain.on('refresh', () => {
     console.log('ipcMain here');
     // win.webContents.reloadIgnoringCache();
     // app.relaunch();
-    console.log("relaunch then quit");
-    app.quit();
-    console.log('quit over');
+    // console.log("quit the relaunch");
+    // app.quit();
+    // console.log('quit over');
     app.relaunch();
+    app.exit();
 })
