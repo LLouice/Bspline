@@ -51,15 +51,12 @@ $(document).ready(function () {
         PIECEWIS = (!PIECEWISE)
       }
       draw();
-
     })
-
-
   });
 
 
   //tooltips
-  $("[data-toggle='tooltip']").tooltip();
+  //$("[data-toggle='tooltip']").tooltip();
 
 
 
@@ -74,19 +71,6 @@ $(document).ready(function () {
   console.log("in out");
   console.log(client);
 
-  // client.invoke("echo", (error, res) => {
-  //   console.log("invoke");
-  //   if (error) {
-  //     console.error(error)
-  //   } else {
-  //     console.log("server is ready")
-  //   }
-  // })
-
-  // client.invoke("echo", (error, res) => {
-  //   console.log("invoke");
-  //   console.log(res);
-  // })
 
   client.invoke("echo", "server ready", (error, res) => {
     // console.log("in invoke");
@@ -96,27 +80,6 @@ $(document).ready(function () {
       console.log("server is ready");
     }
   })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -158,8 +121,6 @@ $(document).ready(function () {
     spline = undefined;
     //switch
     CONTROLPOINTS = true;
-
-
   }
 
   init();
@@ -172,15 +133,11 @@ $(document).ready(function () {
   var lineCanvas = document.getElementById("lineCanvas");
   var gridCanvas = document.getElementById("gridCanvas");
   var tipCanvas = document.getElementById("tipCanvas");
-  // console.log(canvas, pointsCanvas, lineCanvas, splineCanvas);
-  // console.log("width:", $(".canvas"));
   canvas.width = pointsCanvas.width = lineCanvas.width = gridCanvas.width = $(".col-9")[0].offsetWidth;
   canvas.height = pointsCanvas.height = lineCanvas.height = gridCanvas.height = $(".col-9")[0].offsetHeight;
   canvas.style = gridCanvas.style = "background-color: #333A42 ";
   pointsCanvas.style = lineCanvas.style = "background-color: gray ";
   tipCanvas.style = "background-color: #fee"
-  // var cacheCanvas = document.getElementById("cacheCanvas");
-  // console.log(canvas);
   var c = canvas.getContext("2d");
   var pointsContext = pointsCanvas.getContext("2d");
   var lineContext = lineCanvas.getContext("2d");
@@ -418,15 +375,10 @@ $(document).ready(function () {
 
   }
 
-  // function stopDragging2() {
-  //     console.log("mouse up");
-  // }
 
   function clearCanvas() {
     c.clearRect(0, 0, canvas.width, canvas.height);
     init();
-
-
     // drawCircles();
   }
 
@@ -488,15 +440,11 @@ $(document).ready(function () {
       } else {
         // console.log("获取成功");
         // console.log("res is", res);
-
         cb(res);
       }
     });
   }
 
-  function getQuasiSpline(points, rb) {
-
-  }
 
   function drawSpline(c, fns) {
     c.clearRect(0, 0, canvas.width, canvas.width);
@@ -536,10 +484,8 @@ $(document).ready(function () {
           c.stroke();
         }
       });
-
     }
   }
-
 
 
   function drawGrid(c, stepX, stepY, lineWidth, color) {
@@ -561,7 +507,6 @@ $(document).ready(function () {
     }
     c.restore();
   }
-
 
 
   function drawBuffer(c, fn) {
@@ -603,10 +548,7 @@ $(document).ready(function () {
     // c = canvas.getContext("2d");
     // c.drawImage(cacheCanvas, 0, 0);
     // return c.getImageData(0, 0, canvas.width, canvas.height);
-
-
   }
-
 
 
   function draw() {
@@ -644,11 +586,7 @@ $(document).ready(function () {
     //   c.putImageData(lineImageData, 0, 0);
     if (GRID)
       c.drawImage(gridCanvas, 0, 0);
-
   }
-
-
-
 
 
   // drawGrid(20, 20, 1, 'gray');
@@ -670,16 +608,7 @@ $(document).ready(function () {
     var x = event.offsetX;
     var y = event.offsetY;
 
-    var hit = false;
-
-    // if (isCircleSelected(x, y)) {
     tipContext.clearRect(0, 0, tipCanvas.width, tipCanvas.height);
-    // tipContext.fillStyle = "white";
-
-    // tipContext.fillText("(" + curClick.x + "," + curClick.y + ")", 5, 15);
     tipContext.fillText("(" + x + "," + y + ")", 5, 15);
-    // }
-
   }
-
 });

@@ -50,9 +50,9 @@ require('child_process').execFile(script, [port])
 >**某些 API 需要额外解压档案包**<br>
 大部分 `fs` API 可以无需解压即从 `asar` 档案中读取文件或者文件的信息，但是在处理一些依赖真实文件路径的底层系统方法时，Electron 会将所需文件解压到临时目录下，然后将临时目录下的真实文件路径传给底层系统方法使其正常工作。对于这类API，会增加一些开销。<br>
 以下是一些需要额外解压的 API : <br>
-<code>**child_process.execFile**</code>
-`child_process.execFileSync`
-`fs.open`
+<code>**child_process.execFile**</code><br>
+`child_process.execFileSync`<br>
+`fs.open`<br>
 `fs.openSync`
 `process.dlopen` - 用在 require 原生模块时
 
