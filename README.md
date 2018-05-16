@@ -2,10 +2,10 @@
 B-spline generator based on Electron and python
 
 ## 打包
-使用 **Eelctron-Packager** 进行打包
+使用 **Eelctron-Pacager** 进行打包
 
 ```bash
-    electron-packager . B-spline --overwrite --asar=true --ignore="bak" --ignore="pybspline"
+electron-packager . B-spline --overwrite --asar=true --ignore="bak" --ignore="pybspline"
 ```
 由于 `main.js` 中有：
 ```js
@@ -21,7 +21,7 @@ require('child_process').execFile(script, [port])
     `child_process.execFileSync`
     `fs.open`
     `fs.openSync`
-    `process.dlopen` - 用在 `require` 原生模块时
+    `process.dlopen` - 用在 require 原生模块时
 
 所以不将pybsplinedist归档进`app.asar`,否则只解压`api.exe`到Temp文件夹,而相应的Python环境则没解压，造成找不到Python环境的错误。
 
