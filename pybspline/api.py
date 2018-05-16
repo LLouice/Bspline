@@ -1,6 +1,5 @@
-from bspline import get_points, bspline, bspline_quasi, U_uniform
+from bspline import get_points, bspline
 import sys
-import json
 import zerorpc
 
 
@@ -36,11 +35,11 @@ class BsplineApi(object):
         # return n, type(points)
         # return bspline_uniform(n, self.k, points)
 
-    def draw_quasi(self, raw_points):
-        points = get_points(raw_points)
-        n = len(raw_points) - 1
-        ret = bspline_quasi(n, 3, points)
-        return ret
+    # def draw_quasi(self, raw_points):
+    #     points = get_points(raw_points)
+    #     n = len(raw_points) - 1
+    #     ret = bspline_quasi(n, 3, points)
+    #     return ret
 
 
 def parse_port():

@@ -57,4 +57,7 @@ docs/_build/
 target/
 
 # My
+# Packaged
+B-spline-win32-x64/
+pybsplinedist/
 

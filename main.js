@@ -9,31 +9,51 @@ const BrowserWindow = electron.BrowserWindow
 const ipcMain = electron.ipcMain
 
 //auto reload
-require('electron-reload')(__dirname);
+// require('electron-reload')(__dirname);
 
 const path = require('path')
 const url = require('url')
+const fs = require('fs')
 
 
 
 /*************************************************************
  * py process
  *************************************************************/
-
-const PY_DIST_FOLDER = 'pycalcdist'
+const PY_DIST_FOLDER = 'pybsplinedist'
 const PY_FOLDER = 'pybspline'
 const PY_MODULE = 'api' // without .py suffix
 
 let pyProc = null
 let pyPort = null
 
+const readAsar = () => {
+    console.log("__dirname:", __dirname);
+    console.log("__filename:", __filename);
+    // console.log(fs.readdirSync(path.resolve(__dirname, "..", PY_DIST_FOLDER, PY_MODULE)));
+}
+
+readAsar();
 const guessPackaged = () => {
-    const fullPath = path.join(__dirname, PY_DIST_FOLDER)
-    return require('fs').existsSync(fullPath)
+    return fs.readdirSync(path.resolve(__dirname, "..")).indexOf("app.asar") + 1;
+}
+
+const guessPyPackaged = () => {
+    if (guessPackaged())
+        return true;
+    else {
+        const fullPath = path.join(__dirname, PY_DIST_FOLDER)
+        return require('fs').existsSync(fullPath)
+    }
 }
 
 const getScriptPath = () => {
-    if (!guessPackaged()) {
+    if (guessPackaged()) {
+        console.log("packaged");
+        return path.resolve(__dirname, "..", PY_DIST_FOLDER, PY_MODULE, PY_MODULE + '.exe')
+    }
+    console.log("not Packaged");
+    if (!guessPyPackaged()) {
         return path.join(__dirname, PY_FOLDER, PY_MODULE + '.py')
     }
     if (process.platform === 'win32') {
@@ -52,11 +72,11 @@ const createPyProc = () => {
     let port = '' + selectPort()
 
     console.log("script at", script);
-    if (guessPackaged()) {
+    if (guessPyPackaged()) {
         // connect python subprocess stdio to mian process stdio
-
         // pyProc = require('child_process').execFile(script, [port])
         pyProc = require('child_process').execFile(script, [port], (error, stdout, stderr) => {
+
             if (error) {
                 throw error;
             }
@@ -68,7 +88,7 @@ const createPyProc = () => {
         //     "stdio": ['ignore', process.stdout, process.stderr]
         // })
 
-        console.log("api is running");
+        console.log("api.py is running");
     }
 
     if (pyProc != null) {
